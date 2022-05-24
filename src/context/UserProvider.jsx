@@ -1,45 +1,88 @@
-import { createContext, useState } from "react"
-
+import { createContext, useEffect, useState } from "react"
+import { ethers } from "ethers"
 export const UserContext = createContext()
 
 const UserProvider = ({children}) => {
     const [user, setUser] = useState(false)
-    const [connect, setConnect] = useState(false)
-    const [walletAddress, setWalletAddress] = useState('')
-    const { ethereum } = window
+    const [defaultAccount, setDefaultAccount] = useState('0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25')
+  
+    const [balance, setBalance] = useState(null)
+    const [chainId, setChainId] = useState(null)
+    const [chainName, setChainName] = useState(null)
     
     const signIn = () => setUser(true)
 
     const signOut = () => setUser(false)
-
-    const requestAccount = async() => {
-      if(ethereum){
-        setConnect(true)
-        try {
-          const accounts = await window.ethereum.request({
-            method: 'eth_requestAccounts'
-          });
-          setWalletAddress(accounts[0])
-          console.log(accounts)
-        } catch(error){
-          alert(error.message)
-          console.log(error)
-        }
-      } else {
-        setConnect(false)
-        alert('MetaMask not detected')
+    
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    
+    useEffect(() => {
+      if(!window.ethereum) return
+      setListener(window.ethereum)
+      setWallet(window.ethereum)
+      provider.getBalance(defaultAccount).then((result) =>{
+        setBalance(ethers.utils.formatEther(result))
+      })
+      provider.getNetwork().then((result) =>{
+        setChainId(result.chainId)
+        setChainName(result.name)
+      })
+      
+      return () => {
+        removeListener(window.ethereum)
+        removeWallet(window.ethereum)
       }
+      // eslint-disable-next-line
+    },[defaultAccount])
+
+    const onClickConnect = () => {
+      provider.send('eth_requestAccounts', [])
+      .then((accounts) =>{
+        if(accounts.length > 0) setDefaultAccount(accounts[0])
+      })
+      .catch((e) => console.log(e))
     }
 
+    const onClickDisconnect = () => {
+      console.log('click disconnect')
+      setBalance(null)
+      setDefaultAccount('0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25')
+    }
+    const setListener = (ethereum) => {
+      ethereum.on('chainChanged', pageReload);
+    }
+    const removeListener = (ethereum) => {
+      ethereum.removeListener('chainChanged', pageReload)
+    }
+    const pageReload = () => {
+      window.location.reload()
+    }
+    const setWallet = (ethereum) => {
+      ethereum.on('accountsChanged', walletReload);
+    }
+    const removeWallet = (ethereum) => {
+      ethereum.removeListener('accountsChanged', walletReload)
+    }
+    const walletReload = () => {
+      provider.send('eth_requestAccounts', [])
+      .then((accounts) =>{
+        if(accounts.length > 0) setDefaultAccount(accounts[0])
+      })
+      .catch((e) => console.log(e))
+    }
   return (
     <UserContext.Provider value={
       {
         user, 
         signIn, 
         signOut,
-        connect,
-        requestAccount,
-        walletAddress
+        defaultAccount,
+        setDefaultAccount,
+        balance,
+        onClickConnect,
+        onClickDisconnect,
+        chainId,
+        chainName
       }}>
         {children}
     </UserContext.Provider>
