@@ -8,8 +8,8 @@ import NoRes from './components/NoRes'
 /* import Home from './components/Home'; */
 import ReadERC20 from './components/ReadERC20';
 import PrintHistory from './components/PrintHistory'
-import Home from './components/Home';
 import WalletProvider from './context/WalletProvider';
+import SwapCard from './components/SwapCard';
 function App() {
   useDarkMode()
   return (
@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path='/'
             index
-            element ={<Home/>}>
+            element ={<SwapCard/>}>
           </Route>
           <Route path='/loged' element={<WalletProvider><ReadERC20/></WalletProvider>}></Route>
           <Route path='/history' element={

@@ -2,6 +2,13 @@ import React, { useContext } from 'react'
 import { UserContext } from '../context/UserProvider'
 import { WalletContext } from '../context/WalletProvider'
 
+const style = {
+  header: `flex h-screen p-4 w-auto bg-gray-200 rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700`,
+  card: `p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`,
+  cardmb: `mb-6`,
+  label: `block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300`,
+  input: `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`,
+}
 const ReadERC20 = () => {
   const {defaultAccount} = useContext(UserContext)
   const {
@@ -11,46 +18,47 @@ const ReadERC20 = () => {
         } = useContext(WalletContext)
 
   return (
-    <>  
-      <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div className="mb-6">
-          <label htmlFor="addressContractcDAI" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contract Address</label>
-          <input type="text" id="addressContractcDAI" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={addressContractcDAI} disabled></input>
+    
+      <div className={style.header}>
+        <div className={style.card}>
+          <div className={style.cardmb}>
+            <label htmlFor="addressContractcDAI" className={style.label}>Contract Address</label>
+            <input type="text" id="addressContractcDAI" className={style.input} placeholder={addressContractcDAI} disabled></input>
+          </div>
+          <div className={style.cardmb}>
+            <label htmlFor="totalSupply" className={style.label}>Total Supply</label>
+            <input type="text" id="totalSupply" className={style.input} placeholder={`${totalSupplycDAI} ${symbolcDAI}`} disabled></input>
+          </div>
+          <div className={style.cardmb}>
+            <label htmlFor="defaultAccount" className={style.label}>Account Address</label>
+            <input type="text" id="defaultAccount" className={style.input} placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : defaultAccount} disabled></input>
+          </div>
+          <div className="mb-6">
+            <label htmlFor="defaultAccount" className={style.label}>In current Address</label>
+            <input type="text" id="defaultAccount" className={style.input} placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : `${balanceERCcDAI} ${symbolcDAI}`} disabled></input>
+          </div>
         </div>
-        <div className="mb-6">
-          <label htmlFor="totalSupply" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Total Supply</label>
-          <input type="text" id="totalSupply" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`${totalSupplycDAI} ${symbolcDAI}`} disabled></input>
+        
+        <div className={style.card}>
+          <div className={style.cardmb}>
+            <label htmlFor="addressContractcETH" className={style.label}>Contract Address</label>
+            <input type="text" id="addressContractcETH" className={style.input} placeholder={addressContractcETH} disabled></input>
+          </div>
+          <div className={style.cardmb}>
+            <label htmlFor="totalSupply" className={style.label}>Total Supply</label>
+            <input type="text" id="totalSupply" className={style.input} placeholder={`${totalSupplycETH} ${symbolcETH}`} disabled></input>
+          </div>
+          <div className={style.cardmb}>
+            <label htmlFor="defaultAccount" className={style.label}>Account Address</label>
+            <input type="text" id="defaultAccount" className={style.input} placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : defaultAccount} disabled></input>
+          </div>
+          <div className={style.cardmb}>
+            <label htmlFor="defaultAccount" className={style.label}>In current Address</label>
+            <input type="text" id="defaultAccount" className={style.input} placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : `${balanceERCcETH} ${symbolcETH}`} disabled></input>
+          </div>
         </div>
-        <div className="mb-6">
-          <label htmlFor="defaultAccount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Address</label>
-          <input type="text" id="defaultAccount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : defaultAccount} disabled></input>
-        </div>
-        <div className="mb-6">
-          <label htmlFor="defaultAccount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">In current Address</label>
-          <input type="text" id="defaultAccount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : `${balanceERCcDAI} ${symbolcDAI}`} disabled></input>
-        </div>
-      </div>
-      
-      <div className="p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-        <div className="mb-6">
-          <label htmlFor="addressContractcETH" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Contract Address</label>
-          <input type="text" id="addressContractcETH" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={addressContractcETH} disabled></input>
-        </div>
-        <div className="mb-6">
-          <label htmlFor="totalSupply" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Total Supply</label>
-          <input type="text" id="totalSupply" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={`${totalSupplycETH} ${symbolcETH}`} disabled></input>
-        </div>
-        <div className="mb-6">
-          <label htmlFor="defaultAccount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Account Address</label>
-          <input type="text" id="defaultAccount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : defaultAccount} disabled></input>
-        </div>
-        <div className="mb-6">
-          <label htmlFor="defaultAccount" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">In current Address</label>
-          <input type="text" id="defaultAccount" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder={defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? '' : `${balanceERCcETH} ${symbolcETH}`} disabled></input>
-        </div>
-      </div>
-    </>
 
+      </div>
   )
 }
 
