@@ -4,8 +4,9 @@ export const UserContext = createContext()
 
 const UserProvider = ({children}) => {
     const [user, setUser] = useState(false)
-    const [defaultAccount, setDefaultAccount] = useState('0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25')
-  
+    const [defaultAccount, setDefaultAccount] = useState(
+      '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25'
+      )
     const [balance, setBalance] = useState(null)
     const [chainId, setChainId] = useState(null)
     const [chainName, setChainName] = useState(null)
@@ -17,21 +18,22 @@ const UserProvider = ({children}) => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     
     useEffect(() => {
-      if(!window.ethereum) return
-      setListener(window.ethereum)
-      setWallet(window.ethereum)
-      provider.getBalance(defaultAccount).then((result) =>{
-        setBalance(ethers.utils.formatEther(result))
-      })
-      provider.getNetwork().then((result) =>{
-        setChainId(result.chainId)
-        setChainName(result.name)
-      })
-      
+      if(!window.ethereum) 
+      return
+            setListener(window.ethereum)
+            setWallet(window.ethereum)
+            provider.getBalance(defaultAccount).then((result) =>{
+              setBalance(ethers.utils.formatEther(result))
+            })
+            provider.getNetwork().then((result) =>{
+              setChainId(result.chainId)
+              setChainName(result.name)
+            })
+            
       return () => {
-        removeListener(window.ethereum)
-        removeWallet(window.ethereum)
-      }
+              removeListener(window.ethereum)
+              removeWallet(window.ethereum)
+            }
       // eslint-disable-next-line
     },[defaultAccount])
 

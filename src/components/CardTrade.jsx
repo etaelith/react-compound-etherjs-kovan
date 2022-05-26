@@ -7,7 +7,7 @@ const CardTrade = () => {
     const {defaultAccount,chainName,onClickConnect} = useContext(UserContext)
     const [balance1, setBalance1] = useState(undefined)
     const addressContract = '0xF0d0EB522cfa50B716B3b1604C4F0fA6f04376AD'
-    const abi = require('../utils/abi.json')
+    const abi = require('../utils/abicDAI.json')
     const checkContra = () => {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const erc20 = new ethers.Contract(addressContract, abi, provider);

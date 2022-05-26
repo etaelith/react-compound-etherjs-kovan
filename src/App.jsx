@@ -5,10 +5,11 @@ import VerifyUser from './routes/VerifyUser';
 import useDarkMode from './hooks/useDarkMode';
 import NoRes from './components/NoRes'
 
-import Home from './components/Home';
+/* import Home from './components/Home'; */
 import ReadERC20 from './components/ReadERC20';
 import PrintHistory from './components/PrintHistory'
-
+import Home from './components/Home';
+import WalletProvider from './context/WalletProvider';
 function App() {
   useDarkMode()
   return (
@@ -20,7 +21,7 @@ function App() {
             index
             element ={<Home/>}>
           </Route>
-          <Route path='/loged' element={<ReadERC20/>}></Route>
+          <Route path='/loged' element={<WalletProvider><ReadERC20/></WalletProvider>}></Route>
           <Route path='/history' element={
             <VerifyUser>
               <PrintHistory></PrintHistory>
