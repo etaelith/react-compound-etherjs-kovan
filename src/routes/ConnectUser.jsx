@@ -1,13 +1,23 @@
 import { useContext } from "react"
 import { UserContext } from "../context/UserProvider"
 
+const style = {
+    buttonMode : `flex items-center text-gray-500 bg-gray-300 dark:bg-gray-900 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-2xl text-sm p-2.5 cursor-pointer`,
+}
+
 const ConnectUser = () => {
 
     const { defaultAccount, onClickConnect , onClickDisconnect , balance } = useContext(UserContext)
     
     return (
-            <button type="button" onClick={defaultAccount ==='0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? onClickConnect : defaultAccount ? onClickDisconnect : onClickConnect} className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">{defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? 'Connect' : defaultAccount ? `${balance} ETH` : 'Connect' }</button> 
+            <button type="button" onClick={defaultAccount ==='0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? onClickConnect : defaultAccount ? onClickDisconnect : onClickConnect} className={style.buttonMode}>{defaultAccount === '0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25' ? 'Connect' : defaultAccount ? `${Number(balance).toFixed(2)} ETH` : 'Connect' } </button> 
     )
 }
 
 export default ConnectUser
+/* 
+    import ethlogo from '../Assets/eth.png'
+ */
+/* 
+    <img src={ethlogo} alt='eth logo' height={20} width={20}/>
+*/

@@ -7,7 +7,7 @@ const style = {
   card: `p-6 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`,
   cardmb: `mb-6`,
   label: `block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300`,
-  input: `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`,
+  input: `bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white`,
 }
 const ReadERC20 = () => {
   const {defaultAccount} = useContext(UserContext)
@@ -27,7 +27,7 @@ const ReadERC20 = () => {
           </div>
           <div className={style.cardmb}>
             <label htmlFor="totalSupply" className={style.label}>Total Supply</label>
-            <input type="text" id="totalSupply" className={style.input} placeholder={`${totalSupplycDAI} ${symbolcDAI}`} disabled></input>
+            <input type="text" id="totalSupply" className={style.input} placeholder={`${Number(totalSupplycDAI).toFixed(1)} ${symbolcDAI}`} disabled></input>
           </div>
           <div className={style.cardmb}>
             <label htmlFor="defaultAccount" className={style.label}>Account Address</label>
@@ -46,7 +46,7 @@ const ReadERC20 = () => {
           </div>
           <div className={style.cardmb}>
             <label htmlFor="totalSupply" className={style.label}>Total Supply</label>
-            <input type="text" id="totalSupply" className={style.input} placeholder={`${totalSupplycETH} ${symbolcETH}`} disabled></input>
+            <input type="text" id="totalSupply" className={style.input} placeholder={`${Number(totalSupplycETH).toFixed(2)} ${symbolcETH}`} disabled></input>
           </div>
           <div className={style.cardmb}>
             <label htmlFor="defaultAccount" className={style.label}>Account Address</label>

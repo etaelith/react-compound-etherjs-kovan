@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 
 import { UserContext } from "./UserProvider";
 
-
 export const WalletContext = createContext()
 
 const WalletProvider = ({children}) => {
