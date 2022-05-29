@@ -9,7 +9,7 @@ import NoRes from './components/NoRes'
 import ReadERC20 from './components/ReadERC20';
 import PrintHistory from './components/PrintHistory'
 import WalletProvider from './context/WalletProvider';
-import SwapCard from './components/SwapCard';
+import TestCard from './test/TestCard';
 
 const style = {
   main: `h-screen max-h-screen h-min-screen w-screen`
@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path='/'
             index
-            element ={<SwapCard/>}>
+            element ={<TestCard/>}>
           </Route>
           <Route path='/loged' element={<ReadERC20/>}></Route>
           <Route path='/history' element={
