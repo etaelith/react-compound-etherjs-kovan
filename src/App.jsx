@@ -10,9 +10,9 @@ import ReadERC20 from './components/ReadERC20';
 import PrintHistory from './components/PrintHistory'
 import WalletProvider from './context/WalletProvider';
 import TestCard from './test/TestCard';
-
+import ContractProvider from './test/ContractProvider';
 const style = {
-  main: `h-screen max-h-screen h-min-screen w-screen`
+  main: `h-screen w-screen flex flex-col`
 }
 function App() {
   useDarkMode()
@@ -24,9 +24,9 @@ function App() {
         <Routes>
           <Route path='/'
             index
-            element ={<TestCard/>}>
+            element ={<ContractProvider><TestCard/></ContractProvider>}>
           </Route>
-          <Route path='/loged' element={<ReadERC20/>}></Route>
+          <Route path='/loged' element={<><ReadERC20/><ReadERC20/></>}></Route>
           <Route path='/history' element={
             <VerifyUser>
               <PrintHistory></PrintHistory>

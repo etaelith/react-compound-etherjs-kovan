@@ -84,7 +84,8 @@ const UserProvider = ({children}) => {
         onClickConnect,
         onClickDisconnect,
         chainId,
-        chainName
+        chainName,
+        provider
       }}>
         {children}
     </UserContext.Provider>
