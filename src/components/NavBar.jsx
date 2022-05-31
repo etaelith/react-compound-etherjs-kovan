@@ -24,9 +24,8 @@ const NavBar = () => {
                 
                   <NavLink to='/' className={style.navItem} aria-current="page">Home</NavLink>
                 
-                  <NavLink to='/loged' className={`${style.navItem}`}>Loged</NavLink>
+                  <NavLink to='/loged' className={`${style.navItem}`}>Transactions</NavLink>
                 
-                  <NavLink to='/history' className={`${style.navItem}`}>Transactions</NavLink>
                 
               </ul>
             </div>
