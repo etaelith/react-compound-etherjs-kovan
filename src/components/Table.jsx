@@ -41,7 +41,7 @@ export default function Table({ columns, data }) {
                 return (
                 <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" {...page.getRowProps()}>
                     {page.cells.map(cell => {
-                    return <td className="px-6 py-3" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                    return <td className="px-6 py-2 text-center" {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                     })}
                 </tr>
                 );

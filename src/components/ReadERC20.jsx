@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserProvider'
 import { WalletContext } from '../context/WalletProvider'
 
 const style = {
-  header: `flex w-auto bg-gray-200 rounded-lg border border-gray-200 shadow-md sm:p-4 lg:p-6 dark:bg-gray-800 dark:border-gray-700`,
+  header: `flex w-auto bg-gray-200 border border-gray-200 shadow-md sm:p-4 lg:p-6 dark:bg-gray-800 dark:border-gray-700`,
   card: `p-6 max-w-sm lg:max-h-auto bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700`,
   cardmb: `flex justify-between items-center mb-2`,
   label: `mb-2 text-sm font-medium text-gray-900 dark:text-gray-300`,

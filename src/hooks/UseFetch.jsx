@@ -34,12 +34,20 @@ const UseFetch = () => {
                         accessor: 'from_address'
                     },
                     {
-                        Header: "Value",
-                        accessor: 'value_quote'
+                        Header: "Tx Value $ETH",
+                        accessor: (data) => (data.fees_paid / 1e18).toFixed(7)
+                    },
+                    {
+                        Header: "Transfer Value $ETH",
+                        accessor: (data) => (data.value > 0 ? (data.value / 1e18).toFixed(4) : 'Contract Interact' )
                     },
                     {
                         Header: "To address",
                         accessor: 'to_address'
+                    },
+                    {
+                        Header: "Date",
+                        accessor: (data) => new Date(data.block_signed_at).toDateString()
                     }
                 ]
             }

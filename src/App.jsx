@@ -27,7 +27,7 @@ function App() {
             index
             element ={<ContractProvider><VerifyUser><SwapCard/></VerifyUser></ContractProvider>}>
           </Route>
-          <Route path='/loged' element={<><ReadERC20/><UseFetch></UseFetch></>}></Route>
+          <Route path='/transactions' element={<><ReadERC20/><UseFetch></UseFetch></>}></Route>
           <Route path='*' element={<NoRes/>}></Route>
         </Routes>
       </WalletProvider>
