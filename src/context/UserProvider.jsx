@@ -41,6 +41,7 @@ const UserProvider = ({children}) => {
       provider.send('eth_requestAccounts', [])
       .then((accounts) =>{
         if(accounts.length > 0) setDefaultAccount(accounts[0])
+        console.log(`Connect ${accounts[0]}`)
       })
       .catch((e) => console.log(e))
     }
@@ -50,6 +51,7 @@ const UserProvider = ({children}) => {
       setBalance(null)
       setDefaultAccount('0x5c0db99e9b4bacd45df713fa0e8843664a8f9f25')
     }
+    //Reload page when chain change, recommended by the documentation
     const setListener = (ethereum) => {
       ethereum.on('chainChanged', pageReload);
     }
@@ -59,6 +61,7 @@ const UserProvider = ({children}) => {
     const pageReload = () => {
       window.location.reload()
     }
+    //Event account change
     const setWallet = (ethereum) => {
       ethereum.on('accountsChanged', walletReload);
     }
@@ -69,6 +72,7 @@ const UserProvider = ({children}) => {
       provider.send('eth_requestAccounts', [])
       .then((accounts) =>{
         if(accounts.length > 0) setDefaultAccount(accounts[0])
+        console.log(`Swap to ${accounts[0]}`)
       })
       .catch((e) => console.log(e))
     }

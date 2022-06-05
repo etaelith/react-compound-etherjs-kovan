@@ -51,13 +51,15 @@ const ContractProvider = ({children}) => {
     swapToken(balSwap.token)
     // eslint-disable-next-line
     },[balSwap.token])
+
+    //set values for swap
     const swapToken = (token) => {
     switch (token) {
 
         case 'dai':
         setUiTag({...uiTag, tokenValue : 'DAI',swapValue : 'cDAI'})
         exchangeERC20(addressContractcDAI,abicDAI,provider)
-        checkDAIbal()
+        checkDAIbal(addressContractDAI,abicDAI,provider)
         setAbi(abiDAI)
         setContract(addressContractDAI)
         break;
@@ -85,7 +87,7 @@ const ContractProvider = ({children}) => {
         let exChangeRate = ercCurrent / Math.pow(10,18+18-8)
         setExchangeRateCERC(exChangeRate)
     }
-    // exchange rate ERC 2 cERC (changelogic / for * )
+    // exchange rate ERC 2 cERC 
     const exchangeERC20 = async(addressContract,abi,provider) => {
         let cERCContract = new ethers.Contract(addressContract,abi,provider)
         let ercCurrent = await cERCContract.callStatic.exchangeRateCurrent()
@@ -104,8 +106,8 @@ const ContractProvider = ({children}) => {
         })
     }
     // DAI balance
-    const checkDAIbal = () => {
-        const ercDAI = new ethers.Contract(addressContractDAI, abiDAI, provider);
+    const checkDAIbal = (addressContract,abi,provider) => {
+        let ercDAI = new ethers.Contract(addressContract,abi,provider);
         ercDAI.balanceOf(defaultAccount)
         .then((result) => {
             let number = ethers.utils.formatUnits(result, 18)
@@ -113,9 +115,7 @@ const ContractProvider = ({children}) => {
         })
         .catch('error',console.error)
     }
-    const handleClick = (e) => {
-        
-    }
+
     // handleSwap
     const handleSubmit = async(e) =>{
         e.preventDefault()
@@ -160,7 +160,6 @@ const ContractProvider = ({children}) => {
             balSwap,
             placeholder,
             handleSubmit,
-            handleClick
       }}>
           {children}
       </ContractContext.Provider>

@@ -15,27 +15,21 @@ const style = {
 }
 const NavBar = () => {
     return (
-        <nav className={style.nav}>
-            <div className={style.headerLogo}>
-              <img src={compound} alt="" />
-            </div>
-            <div className={style.containerNav}>
-              <ul className={style.navItemCont}>
-                
-                  <NavLink to='/' className={style.navItem} aria-current="page">Home</NavLink>
-                
-                  <NavLink to='/loged' className={`${style.navItem}`}>Transactions</NavLink>
-                
-                
-              </ul>
-            </div>
-            <div className={style.buttonsContainer}>
-              <DarkMode/>
-              <LogUser/>
-            </div>
-            
-      
-</nav>
+      <nav className={style.nav}>
+        <div className={style.headerLogo}>
+          <img src={compound} alt="" />
+        </div>
+        <div className={style.containerNav}>
+          <ul className={style.navItemCont}>
+              <NavLink to='/' className={style.navItem} aria-current="page">Home</NavLink>
+              <NavLink to='/loged' className={`${style.navItem}`}>Transactions</NavLink>
+          </ul>
+        </div>
+        <div className={style.buttonsContainer}>
+          <DarkMode/>
+          <LogUser/>
+        </div>   
+      </nav>  
     )
 }
 

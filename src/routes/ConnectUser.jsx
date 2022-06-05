@@ -15,9 +15,3 @@ const ConnectUser = () => {
 }
 
 export default ConnectUser
-/* 
-    import ethlogo from '../Assets/eth.png'
- */
-/* 
-    <img src={ethlogo} alt='eth logo' height={20} width={20}/>
-*/
